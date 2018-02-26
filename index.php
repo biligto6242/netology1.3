@@ -7,10 +7,10 @@ $continents = [
     'Australia' => ['Macropus' ,'Ornithorhynchus anatinus'],
     'Antarctica' => ['Spheniscidae'],
 ];
-$animals2 = [];
+$animals_two_words = [];
 
-foreach ($continents as $continent => $animalcontinent) {
-    foreach ($animalcontinent as $animals) {
+foreach ($continents as $continent => $animals_continent) {
+    foreach ($animals_continent as $animals) {
         $all_animals= [];
         $anim = explode(' ', $animals);
         $all_animals[]=$anim;
@@ -19,14 +19,15 @@ foreach ($continents as $continent => $animalcontinent) {
             if(count($k) === 2) {
                 $comma_separated = implode(",", $k);
                 $str = str_replace(',', ' ', $comma_separated);
-                $animals2[] = $str;
+                $animals_two_words[] = $str;
             }
         }
     }
 }
-print_r($animals2);
+echo 'Массив зверей название, которых состоит из 2-х слов:';
+var_dump($animals_two_words);
 
-foreach($animals2 as $name){
+foreach($animals_two_words as $name){
     $parts = explode(' ', $name);
     $first[] = $parts[0];
     $second[] = $parts[1];
@@ -34,27 +35,29 @@ foreach($animals2 as $name){
 
 $random_first_word = [];
 
-while (count($random_first_word) < count($animals2)){
-    $proverka = $first[rand(0, count($animals2)-1)];
+while (count($random_first_word) < count($animals_two_words)){
+    $proverka = $first[rand(0, count($animals_two_words)-1)];
     if (!in_array($proverka, $random_first_word)) {
-        array_push($random_first_word, $proverka);
+        $random_first_word[] = $proverka;
     }
 }
 
 $random_second_word = [];
 
-while (count($random_second_word) < count($animals2)){
-    $proverka = $second[rand(0, count($animals2)-1)];
+while (count($random_second_word) < count($animals_two_words)){
+    $proverka = $second[rand(0, count($animals_two_words)-1)];
     if (!in_array($proverka, $random_second_word)) {
-        array_push($random_second_word, $proverka);
+        $random_second_word[] = $proverka;
     }
 }
 
 $final_result = [];
 
-for($i = 0; $i < count($animals2); $i++){
+for($i = 0; $i < count($animals_two_words); $i++){
     $final_result[]= $random_first_word[$i] . ' ' . $random_second_word[$i];
 }
-
+echo 'Массив из выдуманных животных:';
 var_dump($final_result);
+
+
 ?>
