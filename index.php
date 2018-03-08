@@ -1,4 +1,11 @@
 <?php
+/*$animalsEurasia = ['Panthera tigris' ,'Mustela erminea' ,'Mellivora capensis'];
+$animalsAfrica = ['Loxodonta africana' , 'Hippopotamus amphibius' ,'Gorilla'];
+$animalsNorthAmerica = ['Alligator mississippiensis' ,'Grizzly'];
+$animalsSouthAmerica = ['Eunectes murinus' ,'Pygocentrus nattereri'];
+$animalsAustralia = ['Macropus' ,'Ornithorhynchus anatinus'];
+$animalsAntarctica = ['Spheniscidae'];*/
+/*$continent = ['Eurasia', 'Africa', 'NorthAmerica', 'SouthAmerica', 'Australia', 'Antarctica'];*/
 $continents = [
     'Eurasia' => ['Panthera tigris' ,'Mustela erminea' ,'Mellivora capensis'],
     'Africa' => ['Loxodonta africana' , 'Hippopotamus amphibius' ,'Gorilla'],
@@ -7,57 +14,38 @@ $continents = [
     'Australia' => ['Macropus' ,'Ornithorhynchus anatinus'],
     'Antarctica' => ['Spheniscidae'],
 ];
-$animals_two_words = [];
-
-foreach ($continents as $continent => $animals_continent) {
-    foreach ($animals_continent as $animals) {
-        $all_animals= [];
-        $anim = explode(' ', $animals);
-        $all_animals[]=$anim;
-
-        foreach($all_animals as $k){
-            if(count($k) === 2) {
-                $comma_separated = implode(",", $k);
-                $str = str_replace(',', ' ', $comma_separated);
-                $animals_two_words[] = $str;
-            }
+$animals2 = [array()];
+foreach ($continents as $continent => $animalcontinent) {
+    foreach ($animalcontinent as $animals) {
+        if (strpos($animals, ' ') !== false) { // Проверяем на наличие пробела между словами
+            array_push($animals2, $animals);
         }
     }
 }
-echo 'Массив зверей название, которых состоит из 2-х слов:';
-var_dump($animals_two_words);
+print_r($animals2);
 
-foreach($animals_two_words as $name){
-    $parts = explode(' ', $name);
-    $first[] = $parts[0];
-    $second[] = $parts[1];
-}
+    /*for ($i = 0; $i < count($animalscontinent); $i++) {
+        if (array_count_values($animalscontinent) == 1) {
+            $animals2 = $animalscontinent;
+            echo '<p>' . $animals2[$i] . '</p>', PHP_EOL;
+        }
+    }*/
+    /*foreach ($animalscontinent as $animals) {
+        echo '<p>' . $animals. ',</p>', PHP_EOL;
+    }*/
 
-$random_first_word = [];
+/*foreach ($continents as $continent => $animalscontinent) {
+    echo '<h2>' . $continent . ':</h2>', PHP_EOL;
 
-while (count($random_first_word) < count($animals_two_words)){
-    $proverka = $first[rand(0, count($animals_two_words)-1)];
-    if (!in_array($proverka, $random_first_word)) {
-        $random_first_word[] = $proverka;
+    for ($i = 0; $i < count($animalscontinent); $i++) {
+        echo '<p>' . $animalscontinent[$i] . '</p>', PHP_EOL;
     }
-}
-
-$random_second_word = [];
-
-while (count($random_second_word) < count($animals_two_words)){
-    $proverka = $second[rand(0, count($animals_two_words)-1)];
-    if (!in_array($proverka, $random_second_word)) {
-        $random_second_word[] = $proverka;
+    /*foreach ($animalscontinent as $animals) {
+        echo '<p>' . $animals. ',</p>', PHP_EOL;
     }
-}
-
-$final_result = [];
-
-for($i = 0; $i < count($animals_two_words); $i++){
-    $final_result[]= $random_first_word[$i] . ' ' . $random_second_word[$i];
-}
-echo 'Массив из выдуманных животных:';
-var_dump($final_result);
-
-
+}*/
+/*echo '<pre>';
+print_r($continents);
+echo '</pre>';*/
+/*$animals = ['Eurasia' => 'Panthera tigris' ,'Eurasia' => 'Panthera tigris' ,'Eurasia' => 'Panthera tigris' ,'Eurasia' => 'Panthera tigris' ,];*/
 ?>
